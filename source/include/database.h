@@ -23,6 +23,8 @@ public:
     void sort_by_pesel();
     void sort_people_by_surname();
     bool remove_by_index(int);
+
+    std::vector<Student>& get_students() { return students; }
 };
 
 #endif

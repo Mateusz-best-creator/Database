@@ -66,7 +66,7 @@ bool Database::search_by_pesel(const std::string& pesel) const
 void Database::sort_by_pesel()
 {
     std::sort(students.begin(), students.end(), [](const Student& a, const Student& b) {
-        return std::stoi(a.get_pesel()) < std::stoi(b.get_pesel());
+        return a.get_pesel() < b.get_pesel();
     });
 }
 

@@ -16,6 +16,11 @@ protected:
 
     // Declare any member variables you need for your tests
     Database db;
+
+    // Add some temp students
+    Student temp1{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1, "12312312312", Gender::MALE};
+    Student temp2{"Zosia", "Nowak", "ul. Kreta 4, 01-123 Smetowo", 2, "23424323412", Gender::FEMALE};  
+    Student temp3{"Andrzej", "Krajnik", "ul. Wielka 56, 84-321 Gdansk", 3, "34534534512", Gender::MALE};
 };
 
 TEST_F(DatabaseTest, CanAddPersonToDatabase)
@@ -72,15 +77,48 @@ TEST_F(DatabaseTest, DatabaseEmptyWhenNoStudentsAdded)
 
 TEST_F(DatabaseTest, DatabaseCanSearchBySurname)
 {
-  Student temp1{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1, "12312312312", Gender::MALE};
-  Student temp2{"Jan", "Nowak", "ul. Prosta 100, 00-123 Warszawa", 2, "23424323412", Gender::MALE};  
-  Student temp3{"Andrzej", "Krajnik", "ul. Prosta 100, 00-123 Warszawa", 3, "34534534512", Gender::MALE};
-
   EXPECT_TRUE(db.add(temp1));
   EXPECT_TRUE(db.add(temp2));
   EXPECT_TRUE(db.add(temp3));
 
   EXPECT_TRUE(db.search_by_surname("Nowak"));
   EXPECT_FALSE(db.search_by_surname("Nowosielski"));
+}
+
+
+TEST_F(DatabaseTest, DatabaseCanSearchByPesel)
+{
+  EXPECT_TRUE(db.add(temp1));
+  EXPECT_TRUE(db.add(temp2));
+  EXPECT_TRUE(db.add(temp3));
+
+  EXPECT_TRUE(db.search_by_pesel("23424323412"));
+  EXPECT_FALSE(db.search_by_pesel("00000011122"));
+}
+
+TEST_F(DatabaseTest, DatabaseCanSortByPesel)
+{
+  EXPECT_TRUE(db.add(temp3));
+  EXPECT_TRUE(db.add(temp2));
+  EXPECT_TRUE(db.add(temp1));
+
+  db.sort_by_pesel();
+
+  EXPECT_EQ(db.get_students().at(0).get_pesel(), "12312312312");
+  EXPECT_EQ(db.get_students().at(1).get_pesel(), "23424323412");
+  EXPECT_EQ(db.get_students().at(2).get_pesel(), "34534534512");
+}
+
+TEST_F(DatabaseTest, DatabaseCanRemoveByID)
+{
+  EXPECT_TRUE(db.add(temp1));
+  EXPECT_TRUE(db.add(temp2));
+  EXPECT_TRUE(db.add(temp3));
+
+  EXPECT_FALSE(db.remove_by_index(10));
+  EXPECT_EQ(db.get_students().size(), 3);
+
+  EXPECT_TRUE(db.remove_by_index(2));
+  EXPECT_EQ(db.get_students().size(), 2);
 }
 
