@@ -72,13 +72,13 @@ TEST_F(DatabaseTest, DatabaseEmptyWhenNoStudentsAdded)
 
 TEST_F(DatabaseTest, DatabaseCanSearchBySurname)
 {
-  Student temp1{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};
-  Student temp2{"Jan", "Nowak", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};  
-  Student temp3{"Andrzej", "Krajnik", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};
+  Student temp1{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1, "12312312312", Gender::MALE};
+  Student temp2{"Jan", "Nowak", "ul. Prosta 100, 00-123 Warszawa", 2, "23424323412", Gender::MALE};  
+  Student temp3{"Andrzej", "Krajnik", "ul. Prosta 100, 00-123 Warszawa", 3, "34534534512", Gender::MALE};
 
-  db.add(temp1);
-  db.add(temp2);
-  db.add(temp3);
+  EXPECT_TRUE(db.add(temp1));
+  EXPECT_TRUE(db.add(temp2));
+  EXPECT_TRUE(db.add(temp3));
 
   EXPECT_TRUE(db.search_by_surname("Nowak"));
   EXPECT_FALSE(db.search_by_surname("Nowosielski"));
