@@ -4,17 +4,29 @@
 #include "../include/database.h"
 #include "../include/student.h"
 
-TEST(CheckStructure, CanAddPersonToDatabase)
+class DatabaseTest : public ::testing::Test {
+protected:
+    void SetUp() override {
+        // Any common setup code goes here
+    }
+
+    void TearDown() override {
+        // Any common teardown code goes here
+    }
+
+    // Declare any member variables you need for your tests
+    Database db;
+};
+
+TEST_F(DatabaseTest, CanAddPersonToDatabase)
 {
   Student temp{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};
-  Database db;
   EXPECT_TRUE(db.add(temp));
   EXPECT_FALSE(db.add(temp)); // we should not be able to add the same student twice
 }
 
-TEST(DisplayDatabase, CanDisplayDatabaseRecords)
+TEST_F(DatabaseTest, CanDisplayDatabaseRecords)
 {
-  Database db;
   Student temp{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};
   EXPECT_TRUE(db.add(temp));
   
@@ -41,10 +53,8 @@ TEST(DisplayDatabase, CanDisplayDatabaseRecords)
   EXPECT_EQ(captured_output.str(), expected_output.str());
 }
 
-TEST(CheckEmptyDatabase, DatabaseEmptyWhenNoStudentsAdded)
+TEST_F(DatabaseTest, DatabaseEmptyWhenNoStudentsAdded)
 {
-  Database db;
-
   // Redirect cout to a stringstream to capture the output
   std::stringstream captured_output;
   std::streambuf* cout_buffer = std::cout.rdbuf();
