@@ -4,6 +4,7 @@ project(Database
         DESCRIPTION "Student database"
         VERSION 0.0.1)
 
+
 add_executable(Database src/main.cpp src/database.cpp src/student.cpp)
 
 # Specify C++ standard

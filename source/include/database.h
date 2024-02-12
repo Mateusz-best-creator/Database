@@ -14,9 +14,9 @@ public:
     ~Database();
 
     bool add(const Student& student);
-    void display();
-    bool search_by_surname();
-    bool search_by_pesel();
+    void display() const;
+    bool search_by_surname() const;
+    bool search_by_pesel() const;
 };
 
 #endif

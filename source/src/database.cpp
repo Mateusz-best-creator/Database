@@ -16,9 +16,14 @@ bool Database::add(const Student& student)
     return true;
 }
 
-void Database::display()
+void Database::display() const
 {
     std::cout << "Students Database:\n";
+    if (students.size() == 0)
+    {
+        std::cout << "Database is empty" << std::endl;
+        return;
+    }
     for (const auto& student : students)
     {
         std::cout << "ID: " << student.get_id() << std::endl;
@@ -29,12 +34,12 @@ void Database::display()
     }
 }
 
-bool Database::search_by_surname()
+bool Database::search_by_surname() const
 {
     return false;
 }
 
-bool Database::search_by_pesel()
+bool Database::search_by_pesel() const
 {
     return false;
 }
