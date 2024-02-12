@@ -4,12 +4,12 @@ project(Database
         DESCRIPTION "Student database"
         VERSION 0.0.1)
 
-
-add_executable(Database src/main.cpp src/database.cpp src/student.cpp)
-
 # Specify C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CPP_SOURCE_FILES src/database.cpp src/student.cpp src/mainLoop.cpp)
+add_executable(Database src/main.cpp ${CPP_SOURCE_FILES})
 
 # Google test setup
 include(FetchContent)
@@ -23,7 +23,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(unit_tests test/tests.cpp src/database.cpp src/student.cpp)
+add_executable(unit_tests test/tests.cpp ${CPP_SOURCE_FILES})
 target_link_libraries(unit_tests GTest::gtest_main)
 
 include(GoogleTest)

@@ -1,6 +1,7 @@
 #include <iostream>
+#include "../include/mainLoop.h"
 
 int main()
 {
-    std::cout << "HI\n";
+    MainLoop::Run();
 }

@@ -12,7 +12,8 @@ private:
     int id;
     Gender gender;
 
-public:
+public: 
+    Student() = default;
     Student(std::string name, std::string surname, std::string street, int id, std::string pesel, Gender gender);
     ~Student();
 
@@ -28,6 +29,9 @@ public:
     std::string get_street() const { return street; }
     std::string get_pesel() const { return pesel; }
     int get_id() const { return id; }
+
+    friend std::ostream& operator<<(std::ostream& os, const Student& student);
+    friend std::istream& operator>>(std::istream& is, Student& student);
 };
 
 #endif

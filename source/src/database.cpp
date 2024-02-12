@@ -18,7 +18,7 @@ bool Database::add(const Student& student)
 
 void Database::display() const
 {
-    std::cout << "Students Database:\n";
+    std::cout << "Students Database:\n\n";
     if (students.size() == 0)
     {
         std::cout << "Database is empty" << std::endl;
@@ -26,10 +26,7 @@ void Database::display() const
     }
     for (const auto& student : students)
     {
-        std::cout << "ID: " << student.get_id() << std::endl;
-        std::cout << "Student fullname: " << student.get_name() << " " << student.get_surname() << std::endl;
-        std::cout << "Street: " << student.get_street() << std::endl;
-        std::cout << "Pesel: " << student.get_pesel() << std::endl;
+        std::cout << student;
         std::cout << "\n===================\n";
     }
 }
