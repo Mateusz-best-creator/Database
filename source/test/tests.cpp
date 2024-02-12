@@ -31,7 +31,7 @@ TEST_F(DatabaseTest, CanDisplayDatabaseRecords)
   EXPECT_TRUE(db.add(temp));
   
   std::stringstream expected_output;
-  expected_output << "Students Database:\n";
+  expected_output << "Students Database:\n\n";
   expected_output << "ID: " << temp.get_id() << std::endl;
   expected_output << "Student fullname: " << temp.get_name() << " " << temp.get_surname() << std::endl;
   expected_output << "Street: " << temp.get_street() << std::endl;
@@ -67,5 +67,20 @@ TEST_F(DatabaseTest, DatabaseEmptyWhenNoStudentsAdded)
   std::cout.rdbuf(cout_buffer);
 
   // Check if the captured output indicates an empty database
-  EXPECT_EQ(captured_output.str(), "Students Database:\nDatabase is empty\n");
+  EXPECT_EQ(captured_output.str(), "Students Database:\n\nDatabase is empty\n");
 }
+
+TEST_F(DatabaseTest, DatabaseCanSearchBySurname)
+{
+  Student temp1{"Mateusz", "Kowalski", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};
+  Student temp2{"Jan", "Nowak", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};  
+  Student temp3{"Andrzej", "Krajnik", "ul. Prosta 100, 00-123 Warszawa", 1234, "11223344556", Gender::MALE};
+
+  db.add(temp1);
+  db.add(temp2);
+  db.add(temp3);
+
+  EXPECT_TRUE(db.search_by_surname("Nowak"));
+  EXPECT_FALSE(db.search_by_surname("Nowosielski"));
+}
+
