@@ -6,14 +6,6 @@
 
 class DatabaseTest : public ::testing::Test {
 protected:
-    void SetUp() override {
-        // Any common setup code goes here
-    }
-
-    void TearDown() override {
-        // Any common teardown code goes here
-    }
-
     // Declare any member variables you need for your tests
     Database db;
 
