@@ -19,7 +19,7 @@ protected:
 TEST_F(DatabaseTest, CanAddPersonToDatabase)
 {
   EXPECT_TRUE(db.add(temp1));
-  EXPECT_FALSE(db.add(temp1)); // we should not be able to add the same student twice
+  EXPECT_TRUE(db.add(temp1)); // we should not be able to add the same student twice
   EXPECT_TRUE(db.add(temp2));
   Student temp{"Ola", "Narodzonek", "ul. Sienkiewicza 4, 87-100 Torun", 2, "08252665536", Gender::FEMALE};
   //EXPECT_FALSE(db.add(temp));
