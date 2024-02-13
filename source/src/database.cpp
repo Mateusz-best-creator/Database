@@ -8,10 +8,23 @@ Database::~Database() {}
 
 bool Database::add(const Student& student)
 {
+    if (!student.validatePESEL(student.get_pesel()))
+    {
+        std::cout << "Student has invalid PESEL\n";
+        return false;
+    }
     for (const auto& stu : students)
     {
-        if (stu.get_pesel() == student.get_pesel())
+        if (stu.get_id() == student.get_id())
+        {
+            std::cout << "Student with given ID = " << student.get_id() << " arleady exists" << std::endl;
             return false;
+        }
+        if (stu.get_pesel() == student.get_pesel())
+        {
+            std::cout << "Student with given pesel = " << student.get_pesel() << " arleady exists" << std::endl;
+            return false;
+        }
     }
     students.push_back(student);
     return true;
