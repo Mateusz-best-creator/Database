@@ -18,3 +18,7 @@ target_link_libraries(Database PRIVATE libMainLoop)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 add_subdirectory(test)
+
+# For generating documentation
+include(Doxygen)
+Doxygen(docs)
