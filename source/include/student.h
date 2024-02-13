@@ -3,8 +3,16 @@
 
 #include <string>
 
+/**
+ * @brief Enumeration representing the gender of a student.
+ */
 enum class Gender { MALE = 0, FEMALE };
 
+/**
+ * @brief Class representing a student.
+ * 
+ * This class represents a student with attributes such as name, surname, street, PESEL, ID, and gender.
+ */
 class Student
 {
 private:
@@ -24,8 +32,28 @@ public:
     std::string get_pesel() const { return pesel; }
     int get_id() const { return id; }
 
+    /**
+     * @brief Validate the PESEL of the student.
+     * 
+     * @param pesel The PESEL to validate.
+     * @return True if the PESEL is valid, false otherwise.
+     */
     bool validatePESEL(const std::string& pesel) const;
+    /**
+     * @brief Overloaded insertion operator to output student information.
+     * 
+     * @param os The output stream.
+     * @param student The student object.
+     * @return Reference to the output stream.
+     */
     friend std::ostream& operator<<(std::ostream& os, const Student& student);
+    /**
+     * @brief Overloaded extraction operator to input student information.
+     * 
+     * @param is The input stream.
+     * @param student The student object.
+     * @return Reference to the input stream.
+     */
     friend std::istream& operator>>(std::istream& is, Student& student);
 };
 

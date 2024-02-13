@@ -1,6 +1,9 @@
 # BuildTree
 build/
 
+# docs
+source/docs/*
+
 # Prerequisites
 *.d
 

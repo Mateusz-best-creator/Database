@@ -5,8 +5,20 @@
 #include <climits>
 #include "student.h"
 
+/**
+ * @brief Maximum value for index.
+ * 
+ * This constant defines the maximum value for the index used in the Database class.
+ */
 const int MAX_INDEX = INT_MAX;
 
+/**
+ * @brief Database class for managing student records.
+ * 
+ * This class provides functionality for managing a database of student records.
+ * You can add students, display all students, search students by different properties,
+ * sort and remove them.
+ */
 class Database
 {
 private:
